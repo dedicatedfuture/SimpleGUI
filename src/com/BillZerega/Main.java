@@ -1,6 +1,7 @@
 package com.BillZerega;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 //implements hte interface saying an instance of SimpleGuiB IS-A ActionListener
@@ -9,6 +10,7 @@ public class Main implements ActionListener {
 
     //make a button
     JButton button;
+    JFrame frame;
 
 
         public static void main(String[] args) {
@@ -19,10 +21,9 @@ public class Main implements ActionListener {
         }
 
         public void go(){
-            //make a frame window
-            JFrame frame = new JFrame();
+            frame = new JFrame();
             //make a button
-            button = new JButton("click me");
+            button = new JButton("Change Colors");
 
             //links button to listening
             button.addActionListener(this);
@@ -31,8 +32,11 @@ public class Main implements ActionListener {
             //Program quits as soon as you close the window
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+            MyDrawPanel drawPanel = new MyDrawPanel();
+
             //adds the button to the frames content
-            frame.getContentPane().add(button);
+            frame.getContentPane().add(BorderLayout.SOUTH, button);
+            frame.getContentPane().add(BorderLayout.CENTER, drawPanel);
 
 
             //give hte frame a size in pixels
@@ -44,7 +48,7 @@ public class Main implements ActionListener {
 
         //event to happen when button is clicked
         public void actionPerformed(ActionEvent event){
-            button.setText("I've been clicked!");
+            frame.repaint();
         }
 
 }
